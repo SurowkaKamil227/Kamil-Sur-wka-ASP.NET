@@ -1,0 +1,76 @@
+﻿@model Labolatorium_3_App.Models.Library
+
+@{
+    ViewData["Title"] = "Edytuj Bibliotekę";
+}
+
+<h2>Edytuj Bibliotekę</h2>
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description" class="control-label"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success">Zapisz zmiany</button>
+</form>
+
+<div>
+    <a asp-action="Index">Powrót do listy</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<style>
+    body {
+        text-align: center;
+        background-color: #1E272E;
+        color: #fff;
+    }
+
+    h1, h2 {
+        color: #fff;
+    }
+
+    .btn-primary, .btn-danger, .btn-success {
+        background-color: #2F4F4F;
+        color: #fff;
+        border: none;
+    }
+
+    .form-group {
+        text-align: left;
+        margin-bottom: 15px;
+    }
+
+        .form-group label {
+            float: left;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+    .form-container {
+        background-color: #161D22;
+        border-radius: 10px;
+        overflow: hidden;
+        width: 60%;
+        margin: 20px auto;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+</style>

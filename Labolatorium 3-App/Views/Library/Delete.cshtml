@@ -1,0 +1,65 @@
+﻿@model Labolatorium_3_App.Models.Library
+
+@{
+    ViewData["Title"] = "Usuń Bibliotekę";
+}
+
+<h2>Czy na pewno chcesz usunąć tę bibliotekę?</h2>
+
+<div>
+    <h3>@Model.Name</h3>
+    <p>@Model.Description</p>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">Usuń</button>
+    </form>
+</div>
+
+<div>
+    <a asp-action="Index">Anuluj i wróć do listy</a>
+</div>
+
+<style>
+    body {
+        text-align: center;
+        background-color: #1E272E;
+        color: #fff;
+    }
+
+    h1, h2 {
+        color: #fff;
+    }
+
+    .btn-primary, .btn-danger, .btn-success {
+        background-color: #2F4F4F;
+        color: #fff;
+        border: none;
+    }
+
+    .form-group {
+        text-align: left;
+        margin-bottom: 15px;
+    }
+
+        .form-group label {
+            float: left;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+    .form-container {
+        background-color: #161D22;
+        border-radius: 10px;
+        overflow: hidden;
+        width: 60%;
+        margin: 20px auto;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+</style>

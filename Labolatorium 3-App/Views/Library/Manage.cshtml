@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Labolatorium_3_App.Models.Library>
+
+@{
+    Layout = "_Layout"; // Jeśli masz główny układ strony
+}
+
+<style>
+    body {
+        text-align: center;
+        background-color: #1E272E;
+        color: #fff;
+    }
+
+    h1, h2 {
+        color: #fff;
+    }
+
+    .btn-primary, .btn-danger, .btn-success {
+        background-color: #2F4F4F;
+        color: #fff;
+        border: none;
+    }
+
+    .form-group {
+        text-align: left;
+        margin-bottom: 15px;
+    }
+
+        .form-group label {
+            float: left;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+    .form-container {
+        background-color: #161D22;
+        border-radius: 10px;
+        overflow: hidden;
+        width: 60%;
+        margin: 20px auto;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .library-card {
+        background-color: #161D22;
+        border-radius: 10px;
+        margin: 20px;
+        padding: 15px;
+        color: #fff;
+        display: inline-block;
+        width: 30%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+        .library-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .library-card h3 {
+            color: #fff;
+        }
+
+        .library-card a {
+            margin-right: 10px;
+        }
+</style>
+
+<h1>Library list</h1>
+<!-- Przycisk do dodawania nowej biblioteki -->
+<div class="form-container">
+    <a href="@Url.Action("Create", "Library")" class="btn btn-success">Dodaj Nową Bibliotekę</a>
+</div>
+
+@foreach (var library in Model)
+{
+    <div class="library-card">
+        <img src="~/Img/bibl@library.Id.jpg" class="library-image" alt="Obraz biblioteki @library.Name" />
+        <h2>@library.Name</h2>
+        <p>@library.Description</p>
+        <a href="@Url.Action("Edit", "Library", new { id = library.Id })" class="btn btn-primary">Edytuj</a>
+        <a href="@Url.Action("Delete", "Library", new { id = library.Id })" class="btn btn-danger">Usuń</a>
+    </div>
+}

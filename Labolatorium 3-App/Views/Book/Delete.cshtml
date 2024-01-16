@@ -1,0 +1,34 @@
+﻿@model Book
+
+<style>
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    h4 {
+        color: #dc3545; /* Kolor czerwony dla komunikatu o usuwaniu */
+    }
+
+    button[type="submit"] {
+        background-color: #dc3545; /* Kolor tła przycisku "Tak" */
+        color: #ffffff; /* Kolor tekstu na przycisku "Tak" */
+    }
+
+    .btn-primary {
+        background-color: #007bff; /* Kolor tła przycisku "Nie" */
+        color: #ffffff; /* Kolor tekstu na przycisku "Nie" */
+    }
+</style>
+
+<div class="container mt-5">
+    <h4 class="text-danger">Czy na pewno chcesz usunąć książkę o nazwie @Model.Title?</h4>
+    <form asp-controller="Book" asp-action="Delete">
+        <div class="mb-3">
+            <label asp-for="Title">Tytuł</label>
+            <input class="form-control" asp-for="Title" readonly />
+        </div>
+        <button class="btn btn-danger" type="submit">Tak</button>
+        <a class="btn btn-primary" asp-action="Index">Nie</a>
+    </form>
+</div>

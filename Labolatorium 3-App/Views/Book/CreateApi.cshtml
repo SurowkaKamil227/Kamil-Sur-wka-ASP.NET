@@ -1,0 +1,99 @@
+﻿@model Book
+
+@{
+}
+
+<link rel="stylesheet" type="text/css" href="style.css" />
+<div class="container mt-5">
+    <h1>Dodaj książkę</h1>
+    <form asp-controller="Book" asp-action="Create" method="post">
+        <div class="mb-3">
+            <label asp-for="Title" class="form-label">Tytuł</label>
+            <input class="form-control" asp-for="Title" placeholder="Wprowadź tytuł" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Author" class="form-label">Autor książki</label>
+            <input class="form-control" asp-for="Author" placeholder="Wprowadź autora książki" />
+            <span class="text-danger" asp-validation-for="Author"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Page_No" class="form-label">Liczba stron</label>
+            <input class="form-control" asp-for="Page_No" placeholder="Wprowadź liczbę stron" />
+            <span class="text-danger" asp-validation-for="Page_No"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ISBN" class="form-label">ISBN</label>
+            <input class="form-control" asp-for="ISBN" placeholder="Wprowadź numer ISBN książki" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="PublicationDate" class="form-label">Data publikacji</label>
+            <input class="form-control" asp-for="PublicationDate" asp-format="{0:dd.MM.yyyy}" placeholder="DD.MM.RRRR" />
+            <span class="text-danger" asp-validation-for="PublicationDate"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="PublishingHouse" class="form-label">Wydawnictwo</label>
+            <input class="form-control" asp-for="PublishingHouse" placeholder="Wprowadź wydawnictwo" />
+            <span class="text-danger" asp-validation-for="PublishingHouse"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="BookStatus" class="form-label">Status książki</label>
+            <div>
+                <span asp-validation-for="BookStatus" class="text-danger"></span>
+            </div>
+            <select class="form-control" asp-for="BookStatus" asp-items="@Html.GetEnumSelectList<BookStatus>()"></select>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="LibraryId" class="form-label">Biblioteka</label>
+            <select class="form-control" asp-for="LibraryId" asp-items="@Model.Libraries"></select>
+        </div>
+
+        <div class="mb-3">
+            <button type="submit" class="btn btn-success">Utwórz</button>
+            <button type="reset" class="btn btn-danger">Wyczyść</button>
+        </div>
+    </form>
+</div>
+
+<style>
+    body {
+        background-color: #161D22;
+    }
+</style>
+
+@section Scripts{
+    <script>
+        let select = document.getElementById("OrganizationId");
+        let filter = document.getElementById("filter");
+        filter.onchange = function (e) {
+            if (filter.value.lenght == 0) {
+                return;
+            }
+            fetch(`/api/contacts?filter=${filter.value}`)
+                .then(response => {
+                    if (response.ok) {
+                        return response.json()
+                    }
+                    throw "no ok, status " + response.status;
+                })
+                .then(json => {
+                    select.innerHTML = '';
+                    for (let item of json) {
+                        let option = document.createElement('option');
+                        option.setAttribute('value', item.id);
+                        option.innerText = item.title;
+                        select.appendChild(option);
+                    }
+                })
+                .catch(e => {
+                    console.log('cant get data from api', e);
+                });
+        };
+    </script>
+}

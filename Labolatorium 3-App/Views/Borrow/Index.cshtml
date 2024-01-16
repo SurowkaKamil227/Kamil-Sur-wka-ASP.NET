@@ -1,0 +1,61 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<p>
+    <a class="btn btn-outline-secondary" asp-controller="Borrow" asp-action="Index">Borrow a book</a>
+</p>
+<p>
+    <a class="btn btn-outline-secondary" asp-controller="Borrow" asp-action="Borrows">Check your borrows</a>
+</p>
+
+<style>
+    body {
+        text-align: center; /* Wyśrodkowanie zawartości */
+        background-color: #1E272E; /* Kolor tła strony */
+        color: #fff; /* Kolor tekstu na stronie */
+    }
+
+    h1 {
+        color: #fff; /* Kolor nagłówka */
+    }
+
+    .btn-primary {
+        background-color: #2F4F4F; /* Kolor tła przycisku "Dodaj książkę" */
+        color: #fff; /* Kolor tekstu na przycisku "Dodaj książkę" */
+    }
+
+    .table-container {
+        background-color: #161D22; /* Kolor tła kontenera tabeli */
+        border-radius: 10px; /* Ustawienie zaokrąglonych rogów dla efektu subtelności */
+        overflow: hidden; /* Zapobieganie wyjścia treści poza kontener */
+        width: 80%; /* Szerokość kontenera */
+        margin: auto; /* Centrowanie kontenera na stronie */
+        padding: 20px; /* Odpowiednie wypełnienie dla treści wewnątrz kontenera */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Cień dla efektu podniesienia */
+        padding-bottom: 200px;
+    }
+
+    .table {
+        background-color: #161D22; /* Kolor tła tabeli */
+        width: 100%;
+        color: #fff;
+    }
+
+    th {
+        background-color: #161D22; /* Kolor tła nagłówków tabeli */
+        color: #fff; /* Kolor tekstu w nagłówkach tabeli */
+    }
+
+    td {
+        background-color: #fff; /* Kolor tła komórek tabeli */
+    }
+
+    .btn-outline-secondary,
+    .btn-outline-info,
+    .btn-outline-danger {
+        color: #fff; /* Kolor tekstu na przyciskach z obramowaniem */
+        border-color: #fff; /* Kolor obramowania przycisków z obramowaniem */
+    }
+</style>

@@ -1,0 +1,145 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="~/css/site.css" />
+    <style>
+        /* Dostosuj kolor tekstu po automatycznym wypełnieniu pola formularza */
+        .form-control:-webkit-autofill {
+            -webkit-text-fill-color: #FFFFFF;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+
+            /* Dodaj kolor tekstu dla automagicznie wypełnionego tekstu */
+            .form-control:-webkit-autofill,
+            .form-control:-webkit-autofill:hover,
+            .form-control:-webkit-autofill:focus,
+            .form-control:-webkit-autofill:active {
+                transition-delay: 9999s;
+            }
+
+        body {
+            background-color: #1E272E;
+            color: #FFFFFF;
+            font-family: Arial, sans-serif;
+
+            
+        }
+
+        .container {
+            margin-top: 5%;
+            text-align: center;
+
+        }
+
+        .card {
+            background-color: #20262B;
+            border: 1px solid #2C3338;
+            border-radius: 8px;
+            display: inline-block;
+            padding: 25px;
+
+
+        }
+
+        .card-title {
+            color: #FFFFFF;
+        }
+
+        .form-floating {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            background-color: #2C3338;
+            color: #FFFFFF;
+            border: 1px solid #2C3338;
+            border-radius: 5px;
+        }
+
+            .form-control:focus {
+                background-color: #364042;
+                color: #FFFFFF;
+            }
+
+            .form-control::placeholder {
+                color: #9BA6B2;
+            }
+
+        .form-label {
+            color: #61dafb;
+        }
+
+        .btn-primary {
+            background-color: #61dafb;
+            border: 1px solid #61dafb;
+        }
+
+            .btn-primary:hover {
+                background-color: #4fa3d1;
+                border: 1px solid #4fa3d1;
+            }
+
+        a {
+            color: #61dafb;
+        }
+
+            a:hover {
+                color: #4fa3d1;
+            }
+        .registertext{
+            color:lightgreen;
+            font-family: 'Oswald', sans-serif;
+            text-align: left;
+            margin-left: 150px;
+            
+        }
+    </style>
+    <title>@ViewData["Title"]</title>
+</head>
+
+<body>
+    <div class="registertext">
+        <h2><strong>#Read your future now!</strong></h2>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="card">
+                    <h2 class="card-title">Create a new account.</h2>
+                    <hr />
+                    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+                        <label asp-for="Input.Email" class="form-label">Email</label>
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                        <label asp-for="Input.Password" class="form-label">Password</label>
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+                        <label asp-for="Input.ConfirmPassword" class="form-label">Confirm Password</label>
+                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                    </div>
+                    <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

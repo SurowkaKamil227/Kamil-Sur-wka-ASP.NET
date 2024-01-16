@@ -1,0 +1,164 @@
+﻿@model Labolatorium_3_App.Models.BookListViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            text-align: center; /* Wyśrodkowanie zawartości */
+            background-color: #1E272E; /* Kolor tła strony */
+            color: #fff; /* Kolor tekstu na stronie */
+        }
+
+        h1 {
+            color: #fff; /* Kolor nagłówka */
+        }
+
+        .btn-primary {
+            background-color: #2F4F4F; /* Kolor tła przycisku "Dodaj książkę" */
+            color: #fff; /* Kolor tekstu na przycisku "Dodaj książkę" */
+        }
+
+        .table-container {
+            background-color: #161D22; /* Kolor tła kontenera tabeli */
+            border-radius: 10px; /* Ustawienie zaokrąglonych rogów dla efektu subtelności */
+            overflow: hidden; /* Zapobieganie wyjścia treści poza kontener */
+            width: 80%; /* Szerokość kontenera */
+            margin: auto; /* Centrowanie kontenera na stronie */
+            padding: 20px; /* Odpowiednie wypełnienie dla treści wewnątrz kontenera */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Cień dla efektu podniesienia */
+            padding-bottom: 200px;
+        }
+
+        .table {
+            background-color: #161D22; /* Kolor tła tabeli */
+            width: 100%;
+            color: #fff;
+        }
+
+        th {
+            background-color: #161D22; /* Kolor tła nagłówków tabeli */
+            color: #fff; /* Kolor tekstu w nagłówkach tabeli */
+        }
+
+        td {
+            background-color: #fff; /* Kolor tła komórek tabeli */
+        }
+
+        .btn-outline-secondary,
+        .btn-outline-info,
+        .btn-outline-danger {
+            color: #fff; /* Kolor tekstu na przyciskach z obramowaniem */
+            border-color: #fff; /* Kolor obramowania przycisków z obramowaniem */
+        }
+    </style>
+    <title>Book list</title>
+</head>
+<body>
+    <div class="table-container">
+        <h1>Book list</h1>
+        <p>
+
+        </p>
+        <a class="btn btn-outline-secondary" asp-controller="Book" asp-action="Create">Add book</a>
+        <p>
+
+        </p>
+        <p>
+            <a class="btn btn-outline-secondary" asp-controller="Book" asp-action="CreateApi">Add Book (version with API)</a>
+        </p>
+        @if (Model.Books.Count > 0)
+        {
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Books[0].Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Books[0].PublishingHouse)
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+                @foreach (var book in Model.Books)
+                {
+                    <tr>
+                        <td>@book.Title </td>
+                        <td>@book.PublishingHouse</td>
+                        <td>
+                            <a class="btn btn-outline-secondary" asp-controller="Book" asp-action="Update" asp-route-id="@book.id"> Update</a>
+                            <a class="btn btn-outline-info" asp-controller="Book" asp-action="Details" asp-route-id="@book.id"> Details</a>
+                            <a class="btn btn-outline-danger" asp-controller="Book" asp-action="Delete" asp-route-id="@book.id"> Delete</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+        else
+        {
+            <p>No books to display.</p>
+        }
+    </div>
+    @if (Model.PageInfo.TotalItems > Model.PageInfo.ItemsPerPage)
+{
+        <div class="pagination">
+            @if (Model.PageInfo.CurrentPage > 1)
+            {
+                <a asp-action="Index" asp-route-page="@(Model.PageInfo.CurrentPage - 1)">Poprzednia</a>
+            }
+
+            @for (int i = 1; i <= Math.Ceiling((double)Model.PageInfo.TotalItems / Model.PageInfo.ItemsPerPage); i++)
+            {
+                if (i == Model.PageInfo.CurrentPage)
+                {
+                    <span>@i</span>
+                }
+                else
+                {
+                    <a asp-action="Index" asp-route-page="@i">@i</a>
+                }
+            }
+
+            @if (Model.PageInfo.CurrentPage < Math.Ceiling((double)Model.PageInfo.TotalItems / Model.PageInfo.ItemsPerPage))
+            {
+                <a asp-action="Index" asp-route-page="@(Model.PageInfo.CurrentPage + 1)">Następna</a>
+            }
+        </div>
+}
+</body>
+</html>
+
+<style>
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+        .pagination a, .pagination span {
+            margin: 0 5px;
+            padding: 8px 16px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #4CAF50;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+            .pagination a:hover {
+                background-color: #ddd;
+            }
+
+        .pagination span {
+            color: #fff;
+            background-color: #4CAF50;
+            border-color: #4CAF50;
+        }
+
+</style>

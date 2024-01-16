@@ -1,0 +1,86 @@
+﻿@model Book
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f8f9fa; /* Kolor tła strony */
+        color: #495057; /* Kolor tekstu */
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    h4 {
+        color: #007bff; /* Kolor nagłówka */
+    }
+
+    label {
+        color: #17a2b8; /* Kolor etykiet formularza */
+    }
+
+    .form-control {
+        background-color: #ffffff; /* Kolor tła pola formularza */
+        color: #495057; /* Kolor tekstu w polu formularza */
+    }
+
+    .btn-primary {
+        background-color: #007bff; /* Kolor tła przycisku "Zapisz" */
+        color: #ffffff; /* Kolor tekstu na przycisku "Zapisz" */
+    }
+
+    .btn-secondary {
+        background-color: #6c757d; /* Kolor tła przycisku "Cofnij" */
+        color: #ffffff; /* Kolor tekstu na przycisku "Cofnij" */
+    }
+</style>
+
+<div class="container mt-5">
+    <h4>Edytuj książkę</h4>
+    <br />
+    <form asp-controller="Book" asp-action="Update" method="post">
+        <input asp-for="id" />
+        <div class="mb-3">
+            <label asp-for="Title">Tytuł</label>
+            <input class="form-control" asp-for="Title" /> <br />
+            <span class="text-danger" asp-validation-for="Title"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Author">Autor książki</label>
+            <input class="form-control" asp-for="Author" /> <br />
+            <span class="text-danger" asp-validation-for="Author"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Page_No">Liczba stron</label>
+            <input class="form-control" asp-for="Page_No" /> <br />
+            <span class="text-danger" asp-validation-for="Page_No"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ISBN">Numer ISBN</label>
+            <input class="form-control" asp-for="ISBN" /> <br />
+            <span class="text-danger" asp-validation-for="ISBN"></span>
+        <div class="mb-3">
+            <label asp-for="PublicationDate">Data publikacji</label>
+            <input class="form-control" asp-for="PublicationDate" /> <br />
+            <span class="text-danger" asp-validation-for="PublicationDate"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="PublishingHouse">Wydawnictwo</label>
+            <input class="form-control" asp-for="PublishingHouse" /> <br />
+            <span class="text-danger" asp-validation-for="PublishingHouse"></span>
+        </div>
+        <div>
+            <label asp-for="BookStatus">Status dostępności</label>
+            <div>
+                <span asp-validation-for="BookStatus" class="text-danger"></span>
+            </div>
+            <select class="form-control" asp-for="BookStatus" asp-items="@Html.GetEnumSelectList<BookStatus>()"></select>
+        </div>
+        <br />
+        <div class="mb-3">
+            <button class="btn btn-primary" type="submit">Zapisz</button>
+            <button class="btn btn-secondary" type="reset">Cofnij</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,35 @@
+﻿@model Book
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h1>Szczegółowe dane książki: @Model.Title </h1>
+<table class="table table-bordered">
+    <tr>
+        <td><strong class="text-light"">Tytuł:</strong></td>
+        <td class="text-light">@Model.Title</td>
+    </tr>
+    <tr>
+        <td><strong class="text-light">Liczba stron:</strong></td>
+        <td class="text-light">@Model.Page_No</td>
+    </tr>
+    <tr>
+        <td><strong class="text-light">Autor:</strong></td>
+        <td class="text-light">@Model.Author</td>
+    </tr>
+    <tr>
+        <td><strong class="text-light">Data publikacji:</strong></td>
+        <td class="text-light">@Model.PublicationDate</td>
+    </tr>
+    <tr>
+        <td><strong class="text-light">Wydawnictwo:</strong></td>
+        <td class="text-light">@Model.PublishingHouse</td>
+    </tr>
+</table>
+
+
+
+
+
+

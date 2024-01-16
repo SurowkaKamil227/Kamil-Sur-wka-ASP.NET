@@ -1,0 +1,113 @@
+﻿@model Labolatorium_3_App.Models.BorrowViewModel
+
+@{
+    ViewData["Title"] = "Borrow a Book";
+}
+
+<style>
+    body {
+        text-align: center; /* Wyśrodkowanie zawartości */
+        background-color: #1E272E; /* Kolor tła strony */
+        color: #fff; /* Kolor tekstu na stronie */
+    }
+
+    h1 {
+        color: #fff; /* Kolor nagłówka */
+    }
+
+    .btn-primary {
+        background-color: #2F4F4F; /* Kolor tła przycisku "Dodaj książkę" */
+        color: #fff; /* Kolor tekstu na przycisku "Dodaj książkę" */
+        margin-top: 20px;
+    }
+
+    .table-container {
+        background-color: #161D22; /* Kolor tła kontenera tabeli */
+        border-radius: 10px; /* Ustawienie zaokrąglonych rogów dla efektu subtelności */
+        overflow: hidden; /* Zapobieganie wyjścia treści poza kontener */
+        width: 80%; /* Szerokość kontenera */
+        margin: auto; /* Centrowanie kontenera na stronie */
+        padding: 20px; /* Odpowiednie wypełnienie dla treści wewnątrz kontenera */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Cień dla efektu podniesienia */
+        padding-bottom: 200px;
+    }
+
+    .table {
+        background-color: #161D22; /* Kolor tła tabeli */
+        width: 100%;
+        color: #fff;
+    }
+
+    th {
+        background-color: #161D22; /* Kolor tła nagłówków tabeli */
+        color: #fff; /* Kolor tekstu w nagłówkach tabeli */
+    }
+
+    td {
+        background-color: #fff; /* Kolor tła komórek tabeli */
+    }
+
+    .btn-outline-secondary,
+    .btn-outline-info,
+    .btn-outline-danger {
+        color: #fff; /* Kolor tekstu na przyciskach z obramowaniem */
+        border-color: #fff; /* Kolor obramowania przycisków z obramowaniem */
+    }
+
+    .form-control {
+        display: block;
+        width: 70%;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: 0.25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        margin-left: 250px;
+    }
+</style>
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="SubmitBorrow" asp-controller="Borrow" method="post">
+    <div class="form-group">
+        <label for="borrowDate">Borrow Date:</label>
+        <input type="date" id="borrowDate" name="BorrowDate" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="returnDate">Return Date:</label>
+        <input type="date" id="returnDate" name="ReturnDate" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="bookSelect">Choose a book:</label>
+        <select id="bookSelect" name="BookId" class="form-control">
+            @foreach (var book in Model.Books)
+            {
+                <option value="@book.id">@book.Title</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="librarySelect">Choose a library:</label>
+        <select id="librarySelect" name="LibraryId" class="form-control">
+            @foreach (var library in Model.Libraries)
+            {
+                <option value="@library.Id">@library.Name</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Borrow Book</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

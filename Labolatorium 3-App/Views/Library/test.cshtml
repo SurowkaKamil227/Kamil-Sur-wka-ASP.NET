@@ -1,0 +1,49 @@
+﻿@model Library
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="button-container">
+    <a href="@Url.Action("Index1", "Library")" class="action-button select-button">Choose your library</a>
+    <a href="@Url.Action("ManageLibraries", "Home")" class="action-button manage-button">Manage libraries (admin role)</a>
+</div>
+
+<style>
+    .button-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .action-button {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 10px;
+        font-size: 18px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        cursor: pointer;
+    }
+
+        .action-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px);
+        }
+
+    .select-button {
+        /* Specyficzne style dla przycisku wybierania biblioteki */
+    }
+
+    .manage-button {
+        /* Specyficzne style dla przycisku zarządzania bibliotekami */
+    }
+</style>
+
+<script>
+    // Tutaj możesz dodać JavaScript, jeśli jest potrzebny
+</script>
